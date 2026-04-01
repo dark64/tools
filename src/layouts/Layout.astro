@@ -1,0 +1,49 @@
+---
+import '../styles/global.css'
+
+interface Props {
+  title?: string;
+}
+
+const { title = "Software Directory" } = Astro.props;
+const year = new Date().getFullYear();
+
+const ascii = `
+▄▄▄▄▄▄ ▄▄▄   ▄▄▄  ▄▄     ▄▄▄▄ 
+  ██  ██▀██ ██▀██ ██    ███▄▄ 
+  ██  ▀███▀ ▀███▀ ██▄▄▄ ▄▄██▀ 
+`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.ico" />
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+	<meta name="description" content="freeware tools by dark64">
+	<meta name="keywords" content="freeware, tools, utilities, dark64">
+	<meta name="author" content="Darko Macesic">
+  </head>
+  <body class="bg-neutral-900 text-white font-mono min-h-screen">
+    <header class="border-b border-neutral-700 px-6 py-4 text-center">
+      <a href="/" class="hover:text-neutral-300 transition-colors">
+        <pre class="text-white text-xs leading-tight block mx-auto w-fit">{ascii}</pre>
+      </a>
+      <p class="text-neutral-500 text-sm mt-1">// freeware tools by dark64</p>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-6 py-8">
+      <slot />
+    </main>
+
+    <footer class="border-t border-neutral-700 px-6 py-4 text-center text-neutral-600 text-xs">
+      <p>&copy; {year} dark64 &mdash; All tools are freeware. Use at your own risk.</p>
+    </footer>
+  </body>
+</html>

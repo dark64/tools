@@ -1,0 +1,55 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { tools } from '../../data/tools';
+
+export function getStaticPaths() {
+  return tools.map((tool) => ({
+    params: { slug: tool.slug },
+    props: { tool },
+  }));
+}
+
+const { tool } = Astro.props;
+---
+
+<Layout title={`${tool.name} - Software Directory · dark64`}>
+  <a href="/" class="text-neutral-500 hover:text-white text-sm transition-colors">&lt; cd ..</a>
+
+  <div class="mt-6 border border-neutral-700 p-6">
+    <div class="flex flex-col gap-6">
+      <div class="w-full h-full shrink-0 border border-neutral-700 bg-neutral-800 flex items-center justify-center overflow-hidden">
+        <img
+          src={tool.image}
+          alt={tool.name}
+          class="w-full h-full object-contain p-4"
+          onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'text-neutral-600 text-4xl\'>?</span>'"
+        />
+      </div>
+      <div>
+        <h1 class="text-2xl text-neutral-200 font-bold">{tool.name}</h1>
+        <p class="text-neutral-500 text-sm mt-1">v{tool.version} &mdash; {tool.platform}</p>
+      </div>
+    </div>
+
+    <div class="mt-6 border-t border-neutral-700 pt-4">
+      <h2 class="text-neutral-400 text-sm mb-2">&gt; cat README</h2>
+      <p class="text-neutral-300 text-sm leading-relaxed">{tool.longDescription}</p>
+    </div>
+
+    <div class="mt-6 border-t border-neutral-700 pt-4">
+      <h2 class="text-neutral-400 text-sm mb-3">&gt; download</h2>
+      <a
+        href={tool.downloadUrl}
+        class="inline-block border border-white text-white hover:bg-white hover:text-neutral-900 px-4 py-2 text-sm font-bold transition-colors"
+      >
+        [ DOWNLOAD v{tool.version} ]
+      </a>
+      <div class="mt-4 text-xs">
+        <span class="text-neutral-500">SHA-256:</span>
+        <code class="text-neutral-400 break-all ml-1">{tool.sha256}</code>
+      </div>
+    </div>
+  </div>
+
+  <p class="text-neutral-700 text-sm mt-8">EOF</p>
+</Layout>
