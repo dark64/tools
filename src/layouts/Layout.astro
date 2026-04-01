@@ -5,9 +5,13 @@ interface Props {
   title?: string;
 }
 
-const { title = "Software Directory" } = Astro.props;
-const year = new Date().getFullYear();
+const { 
+  title = "Tools", 
+  description = "freeware tools by dark64", 
+  keywords = "freeware, tools, utilities, dark64" 
+} = Astro.props;
 
+const year = new Date().getFullYear();
 const ascii = `
 ▄▄▄▄▄▄ ▄▄▄   ▄▄▄  ▄▄     ▄▄▄▄ 
   ██  ██▀██ ██▀██ ██    ███▄▄ 
@@ -21,14 +25,14 @@ const ascii = `
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" href="/favicon.ico" />
-	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
-	<meta name="description" content="freeware tools by dark64">
-	<meta name="keywords" content="freeware, tools, utilities, dark64">
-	<meta name="author" content="Darko Macesic">
+    <meta name="description" content={description}>
+    <meta name="keywords" content={keywords}>
+    <meta name="author" content="Darko Macesic">
   </head>
   <body class="bg-neutral-900 text-white font-mono min-h-screen">
     <header class="border-b border-neutral-700 px-6 py-4 text-center">

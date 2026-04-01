@@ -12,7 +12,7 @@ export function getStaticPaths() {
 const { tool } = Astro.props;
 ---
 
-<Layout title={`${tool.name} - Software Directory · dark64`}>
+<Layout title={`${tool.name} - Free Download for ${tool.platform}`} description={tool.description} keywords={tool.keywords}>
   <a href="/" class="text-neutral-500 hover:text-white text-sm transition-colors">&lt; cd ..</a>
 
   <div class="mt-6 border border-neutral-700 p-6">
